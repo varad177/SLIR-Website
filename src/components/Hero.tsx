@@ -1,7 +1,7 @@
 import React from 'react';
 import { site } from '@/data/site';
 import { CopyButton } from './CopyButton';
-import { GatewayPanel } from './GatewayPanel';
+import { LiveProductFlow } from './LiveProductFlow';
 import { DashboardMock } from './DashboardMock';
 
 const heroDockerCmd =
@@ -90,16 +90,16 @@ export function Hero() {
           </div>
 
           <div className="relative min-w-0">
-            <GatewayPanel />
+            <LiveProductFlow />
           </div>
         </div>
       </div>
 
       <div className="container-site relative pb-12">
         <div className="flex items-center justify-center gap-3">
-          <span className="h-px w-8 bg-line-strong" />
-          <span className="label-mono">Live interactive dashboard preview — try switching models &amp; testing failover</span>
-          <span className="h-px w-8 bg-line-strong" />
+          <span className="h-px w-5 shrink-0 bg-line-strong sm:w-8" />
+          <span className="label-mono text-center">Live interactive dashboard preview — try switching models &amp; testing failover</span>
+          <span className="h-px w-5 shrink-0 bg-line-strong sm:w-8" />
         </div>
         <div className="mt-5">
           <DashboardMock />

@@ -243,3 +243,50 @@ input[type="range"]::-moz-range-thumb {
 .bar-seg {
   transition: width 450ms cubic-bezier(0.22, 1, 0.36, 1);
 }
+
+@keyframes slirFlowForward {
+  from {
+    stroke-dashoffset: 160;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes slirFlowReverse {
+  from {
+    stroke-dashoffset: 0;
+  }
+  to {
+    stroke-dashoffset: 160;
+  }
+}
+
+.slir-packet-fwd {
+  stroke-dasharray: 28 132;
+  animation: slirFlowForward 1.35s linear infinite;
+}
+
+.slir-packet-rev {
+  stroke-dasharray: 24 136;
+  animation: slirFlowReverse 1.55s linear infinite;
+}
+
+.slir-wire-dashes {
+  stroke-dasharray: 6 10;
+  animation: slirFlowForward 3s linear infinite;
+}
+
+@keyframes slirTabProgress {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.slir-tab-progress {
+  transform-origin: left;
+  animation: slirTabProgress 3.6s linear forwards;
+}

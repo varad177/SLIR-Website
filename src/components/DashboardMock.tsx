@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { SlirPulseMark } from './SlirLogo';
 
 interface SidebarItem {
@@ -124,36 +124,6 @@ export function DashboardMock() {
       ...prev.slice(0, 4),
     ]);
   };
-
-  useEffect(() => {
-    const onRoutePreview = (event: Event) => {
-      const detail = (event as CustomEvent).detail;
-      if (detail?.model) {
-        setSelectedModel(detail.model);
-        setIsPinned(Boolean(detail.isPinned));
-      }
-    };
-    const onLiveRequest = (event: Event) => {
-      const detail = (event as CustomEvent).detail;
-      if (detail?.model) {
-        appendRow({
-          app: detail.app,
-          model: detail.model,
-          tokens: detail.tokens || 520,
-          latency: detail.latency || '420 ms',
-          cost: detail.cost || 0,
-          isFailover: Boolean(detail.isFailover),
-        });
-      }
-    };
-
-    window.addEventListener('slir:route-preview', onRoutePreview);
-    window.addEventListener('slir:live-request', onLiveRequest);
-    return () => {
-      window.removeEventListener('slir:route-preview', onRoutePreview);
-      window.removeEventListener('slir:live-request', onLiveRequest);
-    };
-  });
 
   const handleModelChange = (modelId: string) => {
     setSelectedModel(modelId);
