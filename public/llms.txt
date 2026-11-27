@@ -1,0 +1,25 @@
+# SLIR — Switch LLM In Runtime
+> Self-hosted AI gateway, runtime LLM switcher, latency X-ray profiler, cost budget enforcer, and failover monitor for developers.
+
+- Website: https://slir.varaddhumale.in/
+- Repository: https://github.com/varad177/SLIR
+- Docker Image: https://hub.docker.com/r/varad177/slir-app (`varad177/slir-app:latest`, `varad177/slir-app:v1.0.0`)
+- License: MIT
+
+## Core Capabilities
+- **1-Click Runtime Model Switching**: Target `http://localhost:4101/v1` with `model: "active-model"`; switch between Ollama, LM Studio, vLLM, LocalAI, OpenAI, Anthropic, Groq, DeepSeek, or any `/v1` API without editing code or restarting services.
+- **OpenAI & Native Anthropic Protocol Translation**: Exposes `POST /v1/chat/completions`, `POST /v1/messages`, and `GET /v1/models` with bidirectional translation for streaming SSE, tool calling, vision (`image_url` / image blocks), `cache_control`, and `json_schema`.
+- **Latency X-Ray Profiler**: Decomposes requests into Model Load (VRAM), Prompt Eval (TTFT), and Generation speed (`tokens/sec`), with live `num_ctx` and `temperature` controls.
+- **Per-Application Failover Chains & Attempt Logs**: Up to 5 ordered fallback models per `mp_live_` app key; recovers from HTTP 429, 5xx, timeouts, network errors, and circuit breakers, recording step-by-step error traces.
+- **Attribution, Cost Rules & Hard Budgets**: SQLite WAL-backed operational telemetry (zero prompt retention), custom model pricing fallback, daily/monthly budgets (notify or 429 block), webhooks, and Prometheus `/api/metrics`.
+
+## Quick Start
+```bash
+docker run -d --name slir -p 4100:4101 -p 4101:4101 \
+  --add-host=host.docker.internal:host-gateway \
+  -e OLLAMA_URL=http://host.docker.internal:11434 \
+  -v slir_data:/app/data \
+  varad177/slir-app:latest
+```
+- Dashboard: http://localhost:4100
+- AI Gateway: http://localhost:4101/v1
