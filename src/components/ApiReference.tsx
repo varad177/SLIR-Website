@@ -78,17 +78,17 @@ export function ApiReference() {
         </div>
 
         <div className="mt-10 grid gap-5 lg:grid-cols-2">
-          <div className="card overflow-hidden">
+          <div className="card min-w-0 overflow-hidden">
             <div className="flex items-center justify-between border-b border-line px-5 py-3.5">
               <h3 className="text-[14px] font-semibold">HTTP Endpoints</h3>
               <span className="font-mono text-[10px] text-ink-faint">:4101</span>
             </div>
             <div className="divide-y divide-line/60">
               {endpoints.map((ep) => (
-                <div key={ep.path} className="px-5 py-3.5">
-                  <div className="flex items-center gap-2 font-mono text-[11.5px]">
+                <div key={ep.path} className="px-4 py-3.5 sm:px-5">
+                  <div className="flex flex-wrap items-center gap-2 font-mono text-[11.5px]">
                     <span
-                      className={`rounded px-1.5 py-0.5 text-[9.5px] font-bold ${
+                      className={`shrink-0 rounded px-1.5 py-0.5 text-[9.5px] font-bold ${
                         ep.method === 'POST'
                           ? 'bg-accent/15 text-accent'
                           : 'bg-good/15 text-good'
@@ -96,7 +96,7 @@ export function ApiReference() {
                     >
                       {ep.method}
                     </span>
-                    <span className="font-semibold text-ink">{ep.path}</span>
+                    <span className="break-all font-semibold text-ink sm:break-normal">{ep.path}</span>
                   </div>
                   <p className="mt-1.5 text-[12.5px] leading-relaxed text-ink-dim">{ep.desc}</p>
                 </div>
@@ -104,17 +104,17 @@ export function ApiReference() {
             </div>
           </div>
 
-          <div className="card overflow-hidden">
+          <div className="card min-w-0 overflow-hidden">
             <div className="flex items-center justify-between border-b border-line px-5 py-3.5">
               <h3 className="text-[14px] font-semibold">Environment Variables (Optional)</h3>
               <span className="font-mono text-[10px] text-ink-faint">zero-config defaults</span>
             </div>
             <div className="divide-y divide-line/60">
               {envVars.map((env) => (
-                <div key={env.name} className="px-5 py-3.5">
+                <div key={env.name} className="px-4 py-3.5 sm:px-5">
                   <div className="flex flex-wrap items-baseline justify-between gap-2 font-mono text-[11.5px]">
-                    <span className="font-semibold text-ink">{env.name}</span>
-                    <span className="text-[10.5px] text-ink-faint">{env.defaultVal}</span>
+                    <span className="break-all font-semibold text-ink sm:break-normal">{env.name}</span>
+                    <span className="break-all text-[10.5px] text-ink-faint sm:break-normal">{env.defaultVal}</span>
                   </div>
                   <p className="mt-1.5 text-[12.5px] leading-relaxed text-ink-dim">{env.desc}</p>
                 </div>

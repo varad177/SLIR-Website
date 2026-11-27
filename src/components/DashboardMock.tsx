@@ -283,35 +283,71 @@ export function DashboardMock() {
 
           {/* Main column */}
           <div className="min-w-0 flex-1 bg-night">
-            <div className="flex flex-wrap items-center justify-between gap-2 border-b border-line bg-[#0b0e14] px-4 py-2.5">
-              <div className="flex flex-wrap items-center gap-2 text-[11px]">
-                <span className="font-semibold text-ink-dim">SLIR</span>
-                <span className="text-ink-faint">/</span>
-                <strong className="text-ink">{breadcrumb}</strong>
-                <span className="inline-flex items-center gap-1.5 rounded border border-line bg-surface px-2 py-0.5 font-mono text-[9.5px] text-ink-dim">
-                  <span className="h-1.5 w-1.5 rounded-full bg-accent" />
-                  Global: <strong className="text-ink">google/gemma-4-31b-it</strong>
-                </span>
-                <span className="rounded border border-line bg-surface px-2 py-0.5 font-mono text-[9.5px] text-ink-dim">
-                  {scope === 'all' ? 'All applications' : scope}
+            {/* Mobile-only Brand + Scope + Navigation strip */}
+            <div className="space-y-2.5 border-b border-line bg-[#080a0f] p-3 md:hidden">
+              <div className="flex items-center justify-between gap-2">
+                <div className="flex items-center gap-2">
+                  <SlirPulseMark size={16} />
+                  <span className="text-[12px] font-extrabold tracking-[0.02em]">SLIR</span>
+                  <span className="rounded border border-good/30 bg-good/15 px-1.5 py-0.5 font-mono text-[8px] font-bold text-good">
+                    SWITCH RUNTIME
+                  </span>
+                </div>
+                <span className="flex items-center gap-1 font-mono text-[9px] text-good">
+                  <span className="h-1.5 w-1.5 rounded-full bg-good" />
+                  :4101 Live
                 </span>
               </div>
 
-              <div className="flex items-center gap-2 font-mono text-[9.5px]">
-                <div className="flex items-center gap-1 md:hidden">
+              <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+                <label className="flex min-w-0 flex-1 items-center gap-2 font-mono text-[9.5px] text-ink-faint">
+                  <span className="shrink-0">SCOPE:</span>
+                  <select
+                    aria-label="Mobile analytics scope"
+                    value={scope}
+                    onChange={(e) => setScope(e.target.value)}
+                    className="min-w-0 flex-1 rounded border border-line-strong bg-night px-2 py-1 text-[10.5px] text-ink focus:border-accent focus:outline-none"
+                  >
+                    <option value="Your App">Your App</option>
+                    <option value="support-bot">support-bot</option>
+                    <option value="all">All applications</option>
+                  </select>
+                </label>
+
+                <div className="grid grid-cols-3 gap-1 rounded-md border border-line bg-surface p-0.5 font-mono text-[10px]">
                   {(['overview', 'logs', 'failover'] as const).map((tab) => (
                     <button
                       key={tab}
                       type="button"
                       aria-pressed={activeTab === tab}
                       onClick={() => setActiveTab(tab)}
-                      className="rounded px-1.5 py-0.5 capitalize text-ink-dim aria-pressed:bg-accent/15 aria-pressed:text-accent-bright"
+                      className="cursor-pointer rounded px-2 py-1 capitalize text-ink-dim transition-colors aria-pressed:bg-accent/20 aria-pressed:font-semibold aria-pressed:text-accent-bright"
                     >
                       {tab}
                     </button>
                   ))}
                 </div>
-                <span className="hidden items-center gap-1.5 font-semibold text-good sm:inline-flex">
+              </div>
+            </div>
+
+            <div className="flex flex-wrap items-center justify-between gap-2 border-b border-line bg-[#0b0e14] px-3.5 py-2.5 sm:px-4">
+              <div className="flex min-w-0 flex-wrap items-center gap-1.5 text-[11px] sm:gap-2">
+                <span className="font-semibold text-ink-dim">SLIR</span>
+                <span className="text-ink-faint">/</span>
+                <strong className="text-ink">{breadcrumb}</strong>
+                <span className="inline-flex max-w-full items-center gap-1.5 truncate rounded border border-line bg-surface px-2 py-0.5 font-mono text-[9.5px] text-ink-dim">
+                  <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
+                  <span className="truncate">
+                    Global: <strong className="text-ink">google/gemma-4-31b-it</strong>
+                  </span>
+                </span>
+                <span className="hidden rounded border border-line bg-surface px-2 py-0.5 font-mono text-[9.5px] text-ink-dim sm:inline">
+                  {scope === 'all' ? 'All applications' : scope}
+                </span>
+              </div>
+
+              <div className="hidden items-center gap-2 font-mono text-[9.5px] md:flex">
+                <span className="inline-flex items-center gap-1.5 font-semibold text-good">
                   <span className="h-1.5 w-1.5 rounded-full bg-good" />
                   GATEWAY LIVE
                 </span>
@@ -353,19 +389,19 @@ export function DashboardMock() {
                       </div>
                     </div>
 
-                    <div className="shrink-0">
+                    <div className="w-full min-w-0 shrink-0 lg:w-auto">
                       <label
                         htmlFor="mock-model-select"
                         className="block font-mono text-[8.5px] uppercase tracking-[0.14em] text-ink-faint"
                       >
                         ROUTE THIS APPLICATION TO
                       </label>
-                      <div className="mt-1.5 flex flex-wrap items-center gap-2">
+                      <div className="mt-1.5 flex flex-col gap-2 sm:flex-row sm:items-center">
                         <select
                           id="mock-model-select"
                           value={selectedModel}
                           onChange={(e) => handleModelChange(e.target.value)}
-                          className="rounded-md border border-line-strong bg-night px-2.5 py-1.5 font-mono text-[11px] text-ink focus:border-accent focus:outline-none"
+                          className="w-full min-w-0 rounded-md border border-line-strong bg-night px-2.5 py-1.5 font-mono text-[11px] text-ink focus:border-accent focus:outline-none sm:w-auto"
                         >
                           {modelOptions.map((m) => (
                             <option key={m.id} value={m.id}>
@@ -376,7 +412,7 @@ export function DashboardMock() {
                         <button
                           type="button"
                           onClick={() => handleModelChange('google/gemma-4-31b-it')}
-                          className="cursor-pointer rounded-md border border-line-strong bg-raised px-2.5 py-1.5 text-[10.5px] font-semibold text-ink transition-colors hover:border-accent/50 hover:text-accent-bright"
+                          className="w-full cursor-pointer rounded-md border border-line-strong bg-raised px-2.5 py-1.5 text-[10.5px] font-semibold text-ink transition-colors hover:border-accent/50 hover:text-accent-bright sm:w-auto"
                         >
                           Follow global
                         </button>
@@ -385,7 +421,7 @@ export function DashboardMock() {
                   </div>
 
                   <div className="relative mt-4 flex flex-wrap items-center justify-between gap-2 border-t border-line/80 pt-3">
-                    <div className="rounded border border-line bg-night px-2.5 py-1 font-mono text-[10px] text-ink-dim">
+                    <div className="max-w-full break-all rounded border border-line bg-night px-2.5 py-1 font-mono text-[10px] text-ink-dim sm:break-normal">
                       http://localhost:4101/v1
                     </div>
                     <div className="flex flex-wrap items-center gap-2">
@@ -459,9 +495,9 @@ export function DashboardMock() {
                 </div>
 
                 {/* 5 KPI Cards */}
-                <div className="grid grid-cols-2 gap-2.5 lg:grid-cols-5">
-                  <div className="rounded-lg border border-line bg-surface p-3">
-                    <div className="flex items-center justify-between gap-1">
+                <div className="grid grid-cols-1 gap-2.5 min-[360px]:grid-cols-2 lg:grid-cols-5">
+                  <div className="min-w-0 rounded-lg border border-line bg-surface p-3">
+                    <div className="flex flex-wrap items-center justify-between gap-1">
                       <span className="font-mono text-[8.5px] uppercase text-ink-faint">REQUESTS</span>
                       <span className="rounded bg-good/15 px-1.5 py-0.5 font-mono text-[8px] font-semibold text-good">
                         {((reqOk / reqTotal) * 100).toFixed(1)}% success
@@ -470,28 +506,28 @@ export function DashboardMock() {
                     <div className="mt-2 font-mono text-[22px] font-bold leading-none text-ink">
                       {reqTotal.toLocaleString()}
                     </div>
-                    <div className="mt-2 flex items-center justify-between font-mono text-[8.5px] text-ink-faint">
+                    <div className="mt-2 flex flex-wrap items-center justify-between gap-1 font-mono text-[8.5px] text-ink-faint">
                       <span>{reqOk} succeeded</span>
                       <span className="text-bad">1 failed</span>
                     </div>
                   </div>
 
-                  <div className="rounded-lg border border-line bg-surface p-3">
-                    <div className="flex items-center justify-between gap-1">
+                  <div className="min-w-0 rounded-lg border border-line bg-surface p-3">
+                    <div className="flex flex-wrap items-center justify-between gap-1">
                       <span className="font-mono text-[8.5px] uppercase text-ink-faint">TOKENS</span>
                       <span className="rounded bg-raised px-1.5 py-0.5 font-mono text-[8px] text-ink-dim">91% in</span>
                     </div>
                     <div className="mt-2 font-mono text-[22px] font-bold leading-none text-ink">
                       {tokTotal.toLocaleString()}
                     </div>
-                    <div className="mt-2 flex items-center justify-between font-mono text-[8.5px] text-ink-faint">
+                    <div className="mt-2 flex flex-wrap items-center justify-between gap-1 font-mono text-[8.5px] text-ink-faint">
                       <span>4,380 prompt</span>
                       <span>440 comp.</span>
                     </div>
                   </div>
 
-                  <div className="rounded-lg border border-line bg-surface p-3">
-                    <div className="flex items-center justify-between gap-1">
+                  <div className="min-w-0 rounded-lg border border-line bg-surface p-3">
+                    <div className="flex flex-wrap items-center justify-between gap-1">
                       <span className="font-mono text-[8.5px] uppercase text-ink-faint">TOKEN VOLUME</span>
                       <div className="flex gap-0.5 font-mono text-[7.5px]">
                         {(['15m', '24h', '7d'] as const).map((tf) => (
@@ -520,27 +556,27 @@ export function DashboardMock() {
                     </svg>
                   </div>
 
-                  <div className="rounded-lg border border-line bg-surface p-3">
-                    <div className="flex items-center justify-between gap-1">
+                  <div className="min-w-0 rounded-lg border border-line bg-surface p-3">
+                    <div className="flex flex-wrap items-center justify-between gap-1">
                       <span className="font-mono text-[8.5px] uppercase text-ink-faint">PROMPT CACHE</span>
                       <span className="rounded bg-accent/15 px-1.5 py-0.5 font-mono text-[8px] text-accent-bright">33% hit</span>
                     </div>
                     <div className="mt-2 font-mono text-[22px] font-bold leading-none text-ink">2</div>
-                    <div className="mt-2 flex items-center justify-between font-mono text-[8.5px] text-ink-faint">
+                    <div className="mt-2 flex flex-wrap items-center justify-between gap-1 font-mono text-[8.5px] text-ink-faint">
                       <span>6 reported</span>
                       <span>L:0.04s</span>
                     </div>
                   </div>
 
-                  <div className="col-span-2 rounded-lg border border-line bg-surface p-3 lg:col-span-1">
-                    <div className="flex items-center justify-between gap-1">
+                  <div className="min-w-0 rounded-lg border border-line bg-surface p-3 min-[360px]:col-span-2 lg:col-span-1">
+                    <div className="flex flex-wrap items-center justify-between gap-1">
                       <span className="font-mono text-[8.5px] uppercase text-ink-faint">ESTIMATED SPEND</span>
                       <span className="rounded bg-good/15 px-1.5 py-0.5 font-mono text-[8px] text-good">tracked</span>
                     </div>
                     <div className="mt-2 font-mono text-[22px] font-bold leading-none text-ink">
                       ${spendTotal.toFixed(4)}
                     </div>
-                    <div className="mt-2 flex items-center justify-between font-mono text-[8.5px] text-ink-faint">
+                    <div className="mt-2 flex flex-wrap items-center justify-between gap-1 font-mono text-[8.5px] text-ink-faint">
                       <span>$0.00/day</span>
                       <span>~$0.13/30d</span>
                     </div>
@@ -562,7 +598,7 @@ export function DashboardMock() {
                       Open logs ›
                     </button>
                   </div>
-                  <div className="overflow-x-auto">
+                  <div className="hidden overflow-x-auto sm:block">
                     <table className="w-full min-w-[540px] text-left">
                       <thead>
                         <tr className="font-mono text-[8px] uppercase tracking-[0.12em] text-ink-faint">
@@ -618,6 +654,48 @@ export function DashboardMock() {
                       </tbody>
                     </table>
                   </div>
+
+                  {/* Mobile stacked cards */}
+                  <div className="divide-y divide-line/60 font-mono text-[10px] sm:hidden">
+                    {rows.map((row) => (
+                      <div key={row.id} className={`space-y-1.5 p-3 ${row.isLive ? 'bg-accent/[0.06]' : ''}`}>
+                        <div className="flex items-center justify-between gap-2">
+                          <span className="truncate font-semibold text-ink">
+                            {row.model}
+                            {row.isFailover && (
+                              <span className="ml-1.5 rounded border border-accent/40 bg-accent/15 px-1 py-px text-[8px] font-bold text-accent-bright">
+                                Failover
+                              </span>
+                            )}
+                            {row.isLive && (
+                              <span className="ml-1.5 rounded border border-good/30 bg-good/15 px-1 py-px text-[8px] font-bold text-good">
+                                Live
+                              </span>
+                            )}
+                          </span>
+                          <span className="shrink-0 rounded bg-good/15 px-1.5 py-0.5 text-[8.5px] font-semibold text-good">
+                            200
+                          </span>
+                        </div>
+                        <div className="flex items-center justify-between text-[9px] text-ink-dim">
+                          <span>{row.app} · {row.time}</span>
+                          <span>{row.latency} · {row.tokens} tok</span>
+                        </div>
+                        {row.isFailover && (
+                          <div className="text-[8.5px] text-ink-faint">
+                            from claude-sonnet-4 · Rate limit ·{' '}
+                            <button
+                              type="button"
+                              onClick={() => setActiveTab('logs')}
+                              className="cursor-pointer text-accent-bright hover:underline"
+                            >
+                              details ↗
+                            </button>
+                          </div>
+                        )}
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
             )}
@@ -639,21 +717,21 @@ export function DashboardMock() {
                 </div>
 
                 <div className="grid gap-3 lg:grid-cols-[1.1fr_0.9fr]">
-                  <div className="rounded-lg border border-line bg-surface p-3 font-mono text-[10px]">
-                    <div className="mb-2 flex items-center justify-between border-b border-line pb-2 text-[9px] text-ink-faint">
+                  <div className="min-w-0 rounded-lg border border-line bg-surface p-3 font-mono text-[10px]">
+                    <div className="mb-2 flex flex-wrap items-center justify-between gap-1.5 border-b border-line pb-2 text-[9px] text-ink-faint">
                       <span>FILTER: FAILOVER TRIGGERED</span>
                       <span className="text-good">X-SLIR-Telemetry: recorded</span>
                     </div>
                     <div className="space-y-2">
                       <div className="rounded border border-accent/40 bg-accent/[0.08] p-2.5">
-                        <div className="flex items-center justify-between">
+                        <div className="flex flex-wrap items-center justify-between gap-1.5">
                           <strong className="text-ink">gpt-4o-mini</strong>
                           <span className="rounded bg-good/15 px-1.5 py-0.5 text-[8.5px] text-good">Failover · 200</span>
                         </div>
                         <div className="mt-1 text-[9px] text-ink-dim">from claude-sonnet-4 · Rate limit · 1 fallback</div>
                       </div>
                       <div className="rounded border border-line bg-night/50 p-2.5">
-                        <div className="flex items-center justify-between">
+                        <div className="flex flex-wrap items-center justify-between gap-1.5">
                           <strong className="text-ink">nomic-embed-text:latest</strong>
                           <span className="rounded bg-good/15 px-1.5 py-0.5 text-[8.5px] text-good">Direct · 200</span>
                         </div>
@@ -662,35 +740,35 @@ export function DashboardMock() {
                     </div>
                   </div>
 
-                  <div className="rounded-lg border border-line bg-surface p-3.5 font-mono text-[10px]">
-                    <div className="flex items-center justify-between border-b border-line pb-2">
+                  <div className="min-w-0 rounded-lg border border-line bg-surface p-3.5 font-mono text-[10px]">
+                    <div className="flex flex-wrap items-center justify-between gap-1.5 border-b border-line pb-2">
                       <strong className="text-[11px] text-ink">Failover routing &amp; attempt log</strong>
                       <span className="text-[9px] text-ink-faint">1 fallback</span>
                     </div>
-                    <div className="mt-2.5 grid grid-cols-2 gap-2 text-[9.5px]">
-                      <div className="rounded bg-night/60 p-2">
+                    <div className="mt-2.5 grid grid-cols-1 gap-2 text-[9.5px] sm:grid-cols-2">
+                      <div className="min-w-0 rounded bg-night/60 p-2">
                         <span className="block text-[8px] text-ink-faint">PRIMARY</span>
-                        <strong className="text-ink">claude-sonnet-4</strong>
+                        <strong className="break-all text-ink sm:break-normal">claude-sonnet-4</strong>
                       </div>
-                      <div className="rounded bg-night/60 p-2">
+                      <div className="min-w-0 rounded bg-night/60 p-2">
                         <span className="block text-[8px] text-ink-faint">SERVED BY</span>
-                        <strong className="text-good">gpt-4o-mini</strong>
+                        <strong className="break-all text-good sm:break-normal">gpt-4o-mini</strong>
                       </div>
                     </div>
                     <div className="mt-2.5 space-y-2">
                       <div className="rounded border border-line border-l-2 border-l-bad bg-night/70 p-2">
-                        <div className="flex items-center justify-between text-[9.5px]">
+                        <div className="flex flex-wrap items-center justify-between gap-1.5 text-[9.5px]">
                           <span className="font-semibold text-ink">
                             1 · claude-sonnet-4 <span className="text-ink-faint">(anthropic)</span>
                           </span>
                           <span className="text-bad">Rate limit · HTTP 429 · 110 ms</span>
                         </div>
-                        <div className="mt-1.5 rounded border border-line bg-surface px-2 py-1 text-[9px] text-ink-dim">
+                        <div className="mt-1.5 break-words rounded border border-line bg-surface px-2 py-1 text-[9px] text-ink-dim">
                           429 rate_limit_error: Quota exceeded on tier 1 — switching to backup model
                         </div>
                       </div>
                       <div className="rounded border border-line border-l-2 border-l-good bg-night/70 p-2">
-                        <div className="flex items-center justify-between text-[9.5px]">
+                        <div className="flex flex-wrap items-center justify-between gap-1.5 text-[9.5px]">
                           <span className="font-semibold text-ink">
                             2 · gpt-4o-mini <span className="text-ink-faint">(openai)</span>
                           </span>
@@ -743,8 +821,8 @@ export function DashboardMock() {
                   </div>
                 </div>
 
-                <div className="rounded-lg border border-line bg-surface p-3.5 font-mono text-[10px]">
-                  <div className="mb-2 flex items-center justify-between">
+                <div className="min-w-0 rounded-lg border border-line bg-surface p-3.5 font-mono text-[10px]">
+                  <div className="mb-2 flex flex-wrap items-center justify-between gap-2">
                     <strong className="text-[11px] text-ink">Recorded Failover Attempt Logs</strong>
                     <button
                       type="button"
@@ -762,15 +840,15 @@ export function DashboardMock() {
                       ⚡ Simulate new 429
                     </button>
                   </div>
-                  <div className="rounded border border-line bg-night/70 p-2.5">
-                    <div className="flex items-center justify-between">
+                  <div className="min-w-0 rounded border border-line bg-night/70 p-2.5">
+                    <div className="flex flex-wrap items-center justify-between gap-1.5">
                       <span className="rounded bg-good/15 px-1.5 py-0.5 text-[8.5px] font-semibold text-good">Failover succeeded</span>
-                      <span className="text-[9px] text-ink-faint">req_f83a9c · HTTP 200 · 980 ms</span>
+                      <span className="break-words text-[9px] text-ink-faint">req_f83a9c · HTTP 200 · 980 ms</span>
                     </div>
-                    <div className="mt-1.5 text-[10px] text-ink-dim">
+                    <div className="mt-1.5 break-words text-[10px] text-ink-dim">
                       claude-sonnet-4 <span className="text-accent-bright">→</span> <strong className="text-ink">gpt-4o-mini</strong>
                     </div>
-                    <div className="mt-2 rounded border border-line border-l-2 border-l-bad bg-surface p-2 text-[9px] text-ink-dim">
+                    <div className="mt-2 break-words rounded border border-line border-l-2 border-l-bad bg-surface p-2 text-[9px] text-ink-dim">
                       Attempt 1 failed: upstream returned HTTP 429 (&quot;You exceeded your current quota&quot;). Fallback Attempt 2 succeeded in 870ms.
                     </div>
                   </div>

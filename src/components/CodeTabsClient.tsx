@@ -26,9 +26,9 @@ export function CodeTabsClient({ snippets }: { snippets: HighlightedSnippet[] })
   };
 
   return (
-    <div className="mx-auto mt-10 max-w-4xl">
+    <div className="mx-auto mt-10 w-full min-w-0 max-w-4xl">
       <div className="overflow-hidden rounded-xl border border-line-strong bg-surface shadow-xl shadow-black/30">
-        <div className="flex items-center justify-between gap-3 border-b border-line px-3 py-2">
+        <div className="flex flex-wrap items-center justify-between gap-2 border-b border-line px-3 py-2">
           <div role="tablist" aria-label="Code examples" className="flex flex-wrap gap-1">
             {snippets.map((snippet, index) => (
               <button

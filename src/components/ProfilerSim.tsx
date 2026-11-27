@@ -38,7 +38,7 @@ export function ProfilerSim() {
     <section id="profiler" className="section scroll-mt-20">
       <div className="container-site">
         <div className="grid items-center gap-10 lg:grid-cols-[1fr_1.15fr] lg:gap-14">
-          <div>
+          <div className="min-w-0">
             <p className="eyebrow">04 — Latency X-ray</p>
             <h2 className="mt-4 text-balance text-3xl font-bold tracking-tight md:text-[2.6rem] md:leading-[1.1]">
               See exactly where the milliseconds go.
@@ -68,7 +68,7 @@ export function ProfilerSim() {
             </p>
           </div>
 
-          <div className="card p-5 sm:p-6">
+          <div className="card min-w-0 p-5 sm:p-6">
             <div className="flex items-center justify-between border-b border-line/70 pb-4">
               <span className="label-mono">Probe result</span>
               {cold ? (
@@ -99,7 +99,7 @@ export function ProfilerSim() {
               <div className="bar-seg h-full bg-good" style={{ width: widthPct(evalMs) }} />
             </div>
 
-            <div className="mt-5 grid grid-cols-3 gap-2">
+            <div className="mt-5 grid grid-cols-1 gap-2 sm:grid-cols-3">
               <div className="rounded-lg border border-line bg-night/40 p-2.5">
                 <div className="flex items-center gap-1.5">
                   <span className="h-1.5 w-1.5 rounded-full bg-accent" />

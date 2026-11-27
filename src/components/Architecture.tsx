@@ -31,7 +31,7 @@ export function Architecture() {
 
         <div className="mt-10 rounded-xl border border-line-strong bg-surface p-5 md:p-8">
           <div className="grid items-stretch gap-2 lg:grid-cols-[1fr_auto_1.2fr_auto_1fr]">
-            <div className="flex flex-col rounded-lg border border-line bg-night/40 p-4">
+            <div className="flex min-w-0 flex-col rounded-lg border border-line bg-night/40 p-4">
               <div className="label-mono">Client apps</div>
               <div className="mt-1 text-[13px] font-semibold">OpenAI or Anthropic SDK</div>
               <p className="mt-1 text-[11.5px] leading-relaxed text-ink-dim">
@@ -59,7 +59,7 @@ export function Architecture() {
               </svg>
             </div>
 
-            <div className="rounded-lg border border-accent/35 bg-accent/[0.04] p-4 shadow-[0_0_40px_-18px_rgba(249,115,22,0.45)]">
+            <div className="min-w-0 rounded-lg border border-accent/35 bg-accent/[0.04] p-4 shadow-[0_0_40px_-18px_rgba(249,115,22,0.45)]">
               <div className="flex items-center justify-between">
                 <div className="font-mono text-[10px] font-medium uppercase tracking-[0.16em] text-accent">Unified Container</div>
                 <span className="font-mono text-[10px] text-ink-faint">:4100 / :4101</span>
@@ -86,7 +86,7 @@ export function Architecture() {
               </svg>
             </div>
 
-            <div className="rounded-lg border border-line bg-night/40 p-4">
+            <div className="min-w-0 rounded-lg border border-line bg-night/40 p-4">
               <div className="label-mono">Upstreams</div>
               <div className="mt-1 text-[13px] font-semibold">Local + cloud runtimes</div>
               <div className="mt-3 space-y-3 border-t border-line/60 pt-3">

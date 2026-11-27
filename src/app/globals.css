@@ -29,10 +29,12 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    overflow-x: clip;
   }
 
   body {
     @apply bg-night font-sans text-ink antialiased;
+    overflow-x: clip;
     text-rendering: optimizeLegibility;
   }
 
@@ -133,7 +135,7 @@
   }
 
   .section {
-    @apply border-t border-line/60 py-20 md:py-28;
+    @apply border-t border-line/60 py-14 sm:py-20 md:py-28;
   }
 }
 
@@ -161,14 +163,26 @@
   );
 }
 
+.code-panel {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
 .code-panel pre {
   background: transparent !important;
-  padding: 1rem 1.25rem !important;
+  padding: 0.875rem 1rem !important;
   margin: 0 !important;
   font-family: var(--font-mono) !important;
-  font-size: 12.5px;
+  font-size: 11.5px;
   line-height: 1.75;
   overflow-x: auto;
+}
+
+@media (min-width: 640px) {
+  .code-panel pre {
+    padding: 1rem 1.25rem !important;
+    font-size: 12.5px;
+  }
 }
 
 .code-panel code {

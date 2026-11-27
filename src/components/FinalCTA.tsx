@@ -12,7 +12,7 @@ export function FinalCTA() {
           <div className="bg-blueprint absolute inset-0 opacity-50" aria-hidden="true" />
           <div className="hero-glow absolute inset-0" aria-hidden="true" />
 
-          <div className="relative">
+          <div className="relative min-w-0">
             <p className="eyebrow justify-center">Ready when you are</p>
             <h2 className="mt-4 text-balance text-3xl font-bold tracking-tight md:text-[2.75rem] md:leading-[1.08]">
               Your stack. Your models. Your telemetry.
@@ -23,14 +23,18 @@ export function FinalCTA() {
               <code className="font-mono text-ink">4101</code>.
             </p>
 
-            <div className="mx-auto mt-8 max-w-xl overflow-hidden rounded-lg border border-line-strong bg-night/70 text-left">
+            <div className="mx-auto mt-8 w-full max-w-xl overflow-hidden rounded-lg border border-line-strong bg-night/70 text-left">
               <div className="flex items-center justify-between border-b border-line px-3 py-1.5">
                 <span className="font-mono text-[9px] uppercase tracking-[0.16em] text-ink-faint">terminal</span>
                 <CopyButton text={ctaCmd} />
               </div>
-              <pre className="overflow-x-auto px-4 py-3 font-mono text-[11.5px] leading-relaxed">
+              <pre className="overflow-x-auto px-4 py-3 font-mono text-[11px] leading-relaxed sm:text-[11.5px]">
                 <span className="select-none text-ink-faint">$ </span>
-                <span className="text-ink">{ctaCmd}</span>
+                <span className="text-ink">docker run -d --name slir -p 4100:4101 -p 4101:4101 \</span>
+                {'\n'}
+                <span className="text-ink">    --add-host=host.docker.internal:host-gateway \</span>
+                {'\n'}
+                <span className="text-ink">    -v slir_data:/app/data {site.dockerImage}</span>
               </pre>
             </div>
 

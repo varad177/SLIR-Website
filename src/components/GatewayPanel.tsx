@@ -129,7 +129,7 @@ export function GatewayPanel() {
   };
 
   return (
-    <div className="relative mx-auto w-full max-w-[540px] lg:mx-0">
+    <div className="relative mx-auto w-full min-w-0 max-w-[540px] lg:mx-0">
       <div
         className="pointer-events-none absolute -inset-6 -z-10 rounded-3xl bg-accent/[0.06] blur-2xl"
         aria-hidden="true"
@@ -161,7 +161,7 @@ export function GatewayPanel() {
               </span>
               <span className="font-mono text-[9px] text-good">0 restarts</span>
             </div>
-            <div className="mt-1.5 font-mono text-[10.5px] text-ink-dim">
+            <div className="mt-1.5 break-all font-mono text-[10px] text-ink-dim sm:break-words sm:text-[10.5px]">
               client.chat.completions.create(<span className="font-semibold text-accent-bright">model=&quot;active-model&quot;</span>)
             </div>
           </div>
@@ -206,27 +206,27 @@ export function GatewayPanel() {
             </div>
           </div>
 
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-col gap-2 sm:flex-row">
             <button
               type="button"
               onClick={() => emitRequest(false)}
-              className="inline-flex flex-1 cursor-pointer items-center justify-center gap-1.5 rounded-md bg-accent px-3 py-2 font-mono text-[11px] font-bold text-night transition-colors hover:bg-accent-bright"
+              className="inline-flex w-full cursor-pointer items-center justify-center gap-1.5 rounded-md bg-accent px-3 py-2 font-mono text-[11px] font-bold text-night transition-colors hover:bg-accent-bright sm:flex-1"
             >
               <span>▶</span> Send live request
             </button>
             <button
               type="button"
               onClick={() => emitRequest(true)}
-              className="inline-flex cursor-pointer items-center justify-center gap-1.5 rounded-md border border-line-strong bg-raised px-3 py-2 font-mono text-[11px] font-semibold text-ink transition-colors hover:border-accent/50 hover:text-accent-bright"
+              className="inline-flex w-full cursor-pointer items-center justify-center gap-1.5 rounded-md border border-line-strong bg-raised px-3 py-2 font-mono text-[11px] font-semibold text-ink transition-colors hover:border-accent/50 hover:text-accent-bright sm:w-auto"
             >
               <span>⚡</span> Test 429 failover
             </button>
           </div>
 
           <div className="rounded-lg border border-line bg-night/70 p-3">
-            <div className="flex items-center justify-between gap-2">
+            <div className="flex flex-wrap items-center justify-between gap-1.5">
               <span className="label-xs">3 · Live gateway trace</span>
-              <span className="rounded bg-good/15 px-1.5 py-0.5 font-mono text-[8.5px] font-semibold text-good">
+              <span className="max-w-full break-words rounded bg-good/15 px-1.5 py-0.5 font-mono text-[8.5px] font-semibold text-good">
                 {failoverDemo
                   ? 'HTTP 200 (Failover recovered) · X-SLIR-Telemetry: recorded'
                   : 'HTTP 200 · X-SLIR-Telemetry: recorded'}
@@ -234,9 +234,9 @@ export function GatewayPanel() {
             </div>
 
             <div className="mt-2 space-y-1 font-mono text-[9.5px]">
-              <div className="flex items-center justify-between rounded bg-surface px-2 py-1 text-ink-dim">
+              <div className="flex flex-wrap items-center justify-between gap-1.5 rounded bg-surface px-2 py-1 text-ink-dim">
                 <span>1. Client request</span>
-                <span className="text-ink">
+                <span className="min-w-0 break-all text-ink sm:break-normal">
                   model: &quot;active-model&quot; →{' '}
                   <strong className="text-accent-bright">
                     {failoverDemo ? 'claude-sonnet-4' : activeRoute.id}
@@ -245,13 +245,13 @@ export function GatewayPanel() {
               </div>
 
               {failoverDemo && (
-                <div className="flex items-center justify-between rounded border border-bad/30 bg-bad/10 px-2 py-1 text-bad">
+                <div className="flex flex-wrap items-center justify-between gap-1.5 rounded border border-bad/30 bg-bad/10 px-2 py-1 text-bad">
                   <span>2. Primary returned HTTP 429 (Quota exceeded · 110ms)</span>
                   <span>failover → gpt-4o-mini</span>
                 </div>
               )}
 
-              <div className="flex items-center justify-between rounded bg-surface px-2 py-1 text-ink-dim">
+              <div className="flex flex-wrap items-center justify-between gap-1.5 rounded bg-surface px-2 py-1 text-ink-dim">
                 <span>{failoverDemo ? '3. Fallback succeeded' : '2. Response delivered'}</span>
                 <span className="text-good">
                   {failoverDemo
@@ -268,7 +268,7 @@ export function GatewayPanel() {
             </p>
 
             <div className="mt-3 border-t border-line/70 pt-2.5">
-              <div className="flex items-center justify-between font-mono text-[9px]">
+              <div className="grid grid-cols-2 gap-1.5 font-mono text-[9px] sm:flex sm:items-center sm:justify-between">
                 <span className="text-ink-faint">
                   L:<strong className="text-ink">{failoverDemo ? '0ms' : activeRoute.load}</strong>
                 </span>

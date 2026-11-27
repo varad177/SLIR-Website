@@ -36,7 +36,7 @@ export function Install() {
         </div>
 
         <div className="mt-12 grid gap-4 lg:grid-cols-3">
-          <article className="card relative flex flex-col border-accent/35 p-5">
+          <article className="card relative flex min-w-0 flex-col border-accent/35 p-5">
             <div className="flex items-center justify-between">
               <span className="font-mono text-[11px] text-ink-faint">01</span>
               <span className="chip border-accent/30 bg-accent/10 text-accent">fastest</span>
@@ -71,7 +71,7 @@ export function Install() {
             </div>
           </article>
 
-          <article className="card flex flex-col p-5">
+          <article className="card flex min-w-0 flex-col p-5">
             <div className="flex items-center justify-between">
               <span className="font-mono text-[11px] text-ink-faint">02</span>
               <span className="chip-neutral">compose</span>
@@ -99,7 +99,7 @@ export function Install() {
             </p>
           </article>
 
-          <article className="card flex flex-col p-5">
+          <article className="card flex min-w-0 flex-col p-5">
             <div className="flex items-center justify-between">
               <span className="font-mono text-[11px] text-ink-faint">03</span>
               <span className="chip-neutral">Node 22+</span>

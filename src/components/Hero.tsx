@@ -15,14 +15,14 @@ export function Hero() {
 
       <div className="container-site relative pb-10 pt-10 md:pt-16">
         <div className="grid items-center gap-10 lg:grid-cols-[1.03fr_0.97fr] lg:gap-14">
-          <div className="text-center lg:text-left">
-            <p className="font-mono text-[10px] font-medium uppercase tracking-[0.16em] text-accent sm:text-[11px] sm:tracking-[0.2em]">
-              <span className="whitespace-nowrap">SLIR · Switch LLM In Runtime</span>
-              <span className="mx-1 text-ink-faint sm:mx-1.5">·</span>
+          <div className="min-w-0 text-center lg:text-left">
+            <p className="font-mono text-[10px] font-medium uppercase tracking-[0.14em] text-accent sm:text-[11px] sm:tracking-[0.2em]">
+              <span>SLIR · Switch LLM In Runtime</span>
+              <span className="mx-1.5 text-ink-faint">·</span>
               <span className="whitespace-nowrap">Self-Hosted AI Gateway</span>
             </p>
 
-            <h1 className="mx-auto mt-4 max-w-2xl text-balance text-[2.2rem] font-extrabold leading-[1.06] tracking-[-0.035em] sm:text-5xl lg:mx-0 lg:text-[3.2rem] xl:text-[3.4rem]">
+            <h1 className="mx-auto mt-4 max-w-2xl text-balance text-[1.95rem] font-extrabold leading-[1.08] tracking-[-0.035em] sm:text-5xl lg:mx-0 lg:text-[3.2rem] xl:text-[3.4rem]">
               One local AI gateway.
               <span className="block text-ink-dim">Switch LLMs at runtime.</span>
             </h1>
@@ -48,7 +48,7 @@ export function Hero() {
               <span className="chip border-line-strong bg-raised/60 text-ink-dim">MIT · Zero Prompts Stored</span>
             </div>
 
-            <div className="mx-auto mt-6 max-w-xl overflow-hidden rounded-lg border border-line-strong bg-surface text-left shadow-xl shadow-black/40 lg:mx-0">
+            <div className="mx-auto mt-6 w-full max-w-xl overflow-hidden rounded-lg border border-line-strong bg-surface text-left shadow-xl shadow-black/40 lg:mx-0">
               <div className="flex items-center justify-between border-b border-line px-3 py-1.5">
                 <span className="flex items-center gap-2 font-mono text-[9.5px] uppercase tracking-[0.16em] text-ink-faint">
                   <span className="flex gap-1">
@@ -89,7 +89,7 @@ export function Hero() {
             </div>
           </div>
 
-          <div className="relative">
+          <div className="relative min-w-0">
             <GatewayPanel />
           </div>
         </div>

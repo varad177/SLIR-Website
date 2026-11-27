@@ -54,7 +54,7 @@ export function FAQ() {
       />
       <div className="container-site">
         <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
-          <div>
+          <div className="min-w-0">
             <p className="eyebrow">08 — FAQ</p>
             <h2 className="mt-4 text-balance text-3xl font-bold tracking-tight md:text-[2.6rem] md:leading-[1.1]">
               Questions developers actually ask.
@@ -65,7 +65,7 @@ export function FAQ() {
             </p>
           </div>
 
-          <div className="faq border-t border-line/70">
+          <div className="faq min-w-0 border-t border-line/70">
             {faqs.map((faq) => (
               <details key={faq.q} className="group border-b border-line/70 py-4">
                 <summary className="flex items-center justify-between gap-4 text-[14px] font-semibold text-ink">
